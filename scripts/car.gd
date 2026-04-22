@@ -12,17 +12,18 @@ extends CharacterBody3D
 var speed := 0.0
 var steer_input := 0.0
 var is_wrong_way := false
+var touch_controls: Node  # set in _ready
 
 func _ready() -> void:
-	# Ensure wall sliding works well
 	floor_max_angle = deg_to_rad(60)
 	wall_min_slide_angle = deg_to_rad(10)
 	var tracker = get_node_or_null("../MileageTracker")
 	if tracker: tracker.register(self)
+	touch_controls = get_node_or_null("../TouchControls")
 
 func _physics_process(delta: float) -> void:
 	var forward = -transform.basis.z
-	# Input
+	# Keyboard input
 	var throttle := 0.0
 	if Input.is_action_pressed("accelerate"): throttle = 1.0
 	elif Input.is_action_pressed("brake"): throttle = -0.5
@@ -30,6 +31,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("steer_left"): steer_input = 1.0
 	elif Input.is_action_pressed("steer_right"): steer_input = -1.0
 	var braking = Input.is_action_pressed("handbrake")
+	# Merge touch input
+	if touch_controls:
+		if touch_controls.touch_throttle: throttle = 1.0
+		if touch_controls.touch_brake: throttle = -0.5; braking = true
+		if touch_controls.touch_steer != 0.0: steer_input = touch_controls.touch_steer
 
 	# Acceleration
 	speed += throttle * accel * delta
