@@ -1,0 +1,16 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1776823284
+export_presets.cfg::TextFile/TextFile::-1::1776823239::0::1::::<><><>0<>0<><>::
+::res://export/::1776823284
+::res://export/web/::1776823284
+::res://scenes/::1776823239
+race.tscn::PackedScene/PackedScene::26264534736::1776823239::0::1::::<><><>0<>0<><>::res://scripts/track_generator.gd<>res://scripts/car.gd<>res://scripts/ai_car.gd<>res://scripts/camera_follow.gd<>res://scripts/hud.gd<>res://scripts/mileage_tracker.gd<>res://scripts/audio_manager.gd<>res://scripts/touch_controls.gd
+::res://scripts/::1776823239
+ai_car.gd::GDScript/GDScript::1984780708601468590::1776823239::0::1::::<>CharacterBody3D<><>0<>0<><>::
+audio_manager.gd::GDScript/GDScript::9124246554115998008::1776823239::0::1::::<>Node3D<><>0<>0<><>::
+camera_follow.gd::GDScript/GDScript::4136562806163464751::1776823239::0::1::::<>Camera3D<><>0<>0<><>::
+car.gd::GDScript/GDScript::8582896282057635143::1776823239::0::1::::<>CharacterBody3D<><>0<>0<><>::
+hud.gd::GDScript/GDScript::505901470295680053::1776823239::0::1::::<>CanvasLayer<><>0<>0<><>::
+mileage_tracker.gd::GDScript/GDScript::8730146830691152725::1776823239::0::1::::<>Node<><>0<>0<><>::
+touch_controls.gd::GDScript/GDScript::3412409430507239302::1776823239::0::1::::<>CanvasLayer<><>0<>0<><>::
+track_generator.gd::GDScript/GDScript::1667192360002895152::1776823239::0::1::::<>Node3D<><>0<>0<><>::
