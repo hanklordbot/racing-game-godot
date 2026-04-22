@@ -11,6 +11,7 @@ func _ready() -> void:
 	_generate_walls()
 	_generate_center_line()
 	_generate_start_line()
+	_generate_road_markings()
 
 func _generate_road() -> void:
 	var st = SurfaceTool.new()
@@ -97,3 +98,26 @@ func _generate_start_line() -> void:
 	mat.albedo_color = Color.WHITE
 	mi.material_override = mat
 	add_child(mi)
+
+func _generate_road_markings() -> void:
+	# Dashed center line along the track for speed perception
+	var dash_count := 80
+	var dash_len := 1.5
+	var dash_width := 0.2
+	var mat = StandardMaterial3D.new()
+	mat.albedo_color = Color(1, 1, 1, 0.8)
+	for i in dash_count:
+		if i % 2 == 1: continue  # skip every other = dashed
+		var a = TAU * i / float(dash_count)
+		var pos = Vector3(cos(a) * radius_x, 0.02, sin(a) * radius_z)
+		var a_next = TAU * (i + 0.5) / float(dash_count)
+		var pos_next = Vector3(cos(a_next) * radius_x, 0.02, sin(a_next) * radius_z)
+		var dir = (pos_next - pos).normalized()
+		var mi = MeshInstance3D.new()
+		var mesh = BoxMesh.new()
+		mesh.size = Vector3(dash_width, 0.02, dash_len)
+		mi.mesh = mesh
+		mi.position = pos
+		mi.look_at(pos + dir, Vector3.UP)
+		mi.material_override = mat
+		add_child(mi)
